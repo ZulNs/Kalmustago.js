@@ -1,6 +1,6 @@
 # Kalender Musim Tahunan Gorontalo
 
-&nbsp;
+[![DOI: 10.5281/zenodo.2667461](https://zenodo.org/badge/doi/10.5281/zenodo.2667461.svg)](https://zenodo.org/record/2667461)
 
 ## Demo
 Demo [disini](https://zulns.github.io/Kalmustago.js/).
