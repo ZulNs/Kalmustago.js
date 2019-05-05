@@ -1,0 +1,234 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<title>Kalender Musim Tahunan Gorontalo</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="author" content="ZulNs">
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta name="robots" content="all">
+<meta name="copyright" content="ZulNs">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+<!--link rel="icon" href="favicon.png" type="image/png" /-->
+<!--link rel="icon" href="favicon.ico" type="image/x-icon" /-->
+</head>
+<body>
+<link rel="stylesheet" type="text/css" href="../w3css/w3.css" />
+<style type="text/css">
+.w3-bar-item{border-left:6px solid transparent!important}
+.w3-bar-item:not(:disabled):hover{border-color:#f44336!important}
+.w3-bar-item:focus{border-color:#2196F3!important}
+.w3-bar-item.expanded{color:#fff;background-color:#616161}
+button.collapsed + div,button.collapsed>:nth-child(3),button.expanded>:nth-child(2){display:none!important}
+.w3-bar-item input[type=radio],.w3-bar-item label{cursor:pointer}
+.w3-bar-item:focus-within{border-color:#2196F3!important}
+</style>
+
+<div class="w3-container w3-padding w3-red">
+	<div class="w3-dropdown-click w3-left" style="margin:6px 12px 0px -4px">
+		<button id="menuButton" class="w3-button w3-ripple" onclick="openMenu()">
+			<svg width="18" height="23"><path d="M0 6L18 6L18 8L0 8Z M0 13L18 13L18 15L0 15Z M0 20L18 20L18 22L0 22Z"/></svg>
+		</button>
+		<div id="menuContent" class="w3-dropdown-content w3-bar-block w3-border w3-small" style="width:228px">
+			<button class="w3-bar-item w3-button w3-ripple collapsed" onclick="dropdown(this)">
+				<span>Mode Kalender</span>
+				<span class="w3-right"><svg width="10" height="10"><path d="M1 3L5 7L9 3Z"/></svg></span>
+				<span class="w3-right"><svg width="10" height="10"><path d="M1 7L5 3L9 7Z"/></svg></span>
+			</button>
+				<div class="w3-bar-block w3-light-grey">
+					<button class="w3-bar-item w3-transparent" onclick="selectCalMode(this,false)" disabled>&#9679;&nbsp;Masehi</button>
+					<button class="w3-bar-item w3-button w3-ripple" onclick="selectCalMode(this,true)">&#9679;&nbsp;Hijriah</button>
+				</div>
+			<button class="w3-bar-item w3-button w3-ripple collapsed" onclick="dropdown(this)">
+				<span>Mulai hari</span>
+				<span class="w3-right"><svg width="10" height="10"><path d="M1 3L5 7L9 3Z"/></svg></span>
+				<span class="w3-right"><svg width="10" height="10"><path d="M1 7L5 3L9 7Z"/></svg></span>
+			</button>
+				<div class="w3-bar-block w3-light-grey">
+					<button class="w3-bar-item w3-button w3-ripple" onclick="selectFirstDay(this,0)">&#9679;&nbsp;Minggu</button>
+					<button class="w3-bar-item w3-transparent" onclick="selectFirstDay(this,1)" disabled>&#9679;&nbsp;Senin</button>
+					<button class="w3-bar-item w3-button w3-ripple" onclick="selectFirstDay(this,2)">&#9679;&nbsp;Selasa</button>
+					<button class="w3-bar-item w3-button w3-ripple" onclick="selectFirstDay(this,3)">&#9679;&nbsp;Rabu</button>
+					<button class="w3-bar-item w3-button w3-ripple" onclick="selectFirstDay(this,4)">&#9679;&nbsp;Kamis</button>
+					<button class="w3-bar-item w3-button w3-ripple" onclick="selectFirstDay(this,5)">&#9679;&nbsp;Jum'at</button>
+					<button class="w3-bar-item w3-button w3-ripple" onclick="selectFirstDay(this,6)">&#9679;&nbsp;Sabtu</button>
+				</div>
+			<button class="w3-bar-item w3-button w3-ripple collapsed" onclick="dropdown(this)">
+				<span>Pilih musim</span>
+				<span class="w3-right"><svg width="10" height="10"><path d="M1 3L5 7L9 3Z"/></svg></span>
+				<span class="w3-right"><svg width="10" height="10"><path d="M1 7L5 3L9 7Z"/></svg></span>
+			</button>
+				<div class="w3-bar-block w3-light-grey">
+					<button class="w3-bar-item w3-button w3-ripple" onclick="selectEvent(this,0)">&#9679;&nbsp;Musim&nbsp;Tanam</button>
+					<button class="w3-bar-item w3-button w3-ripple" onclick="selectEvent(this,1)">&#9679;&nbsp;Musim&nbsp;Melaut</button>
+					<button class="w3-bar-item w3-button w3-ripple" onclick="selectEvent(this,2)">&#9679;&nbsp;Musim&nbsp;Hajatan</button>
+					<button class="w3-bar-item w3-button w3-ripple" onclick="selectEvent(this,3)">&#9679;&nbsp;Payango&nbsp;Bele</button>
+					<button class="w3-bar-item w3-button w3-ripple" onclick="selectEvent(this,4)">&#9679;&nbsp;Tampilkan&nbsp;Lowanga</button>
+					<button class="w3-bar-item w3-transparent" onclick="selectEvent(this,5)" disabled>&#9679;&nbsp;Hilangkan&nbsp;Lowangan</button>
+					<button class="w3-bar-item w3-transparent" onclick="selectEvent(this,6)" disabled>&#9679;&nbsp;Hilangkan&nbsp;Semua</button>
+				</div>
+			<button class="w3-bar-item w3-button w3-ripple" onclick="gotoToday()">Tampilkan hari ini</button`>
+			<button class="w3-bar-item w3-button w3-ripple collapsed" onclick="dropdown(this)">
+				<span>Atur Nilai Tahun</span>
+				<span class="w3-right"><svg width="10" height="10"><path d="M1 3L5 7L9 3Z"/></svg></span>
+				<span class="w3-right"><svg width="10" height="10"><path d="M1 7L5 3L9 7Z"/></svg></span>
+			</button>
+				<div class="w3-bar-block w3-light-grey">
+					<div class="w3-bar-item">
+						<input id="valYear" class="w3-input w3-border" type="text" placeholder="nilai tahun...">
+					</div>
+					<button class="w3-bar-item w3-button w3-ripple" onclick="setYear()">Terapkan</button>
+				</div>
+			<button class="w3-bar-item w3-button w3-ripple collapsed" onclick="dropdown(this)">
+				<span>Atur Tema</span>
+				<span class="w3-right"><svg width="10" height="10"><path d="M1 3L5 7L9 3Z"/></svg></span>
+				<span class="w3-right"><svg width="10" height="10"><path d="M1 7L5 3L9 7Z"/></svg></span>
+			</button>
+				<div class="w3-bar-block w3-light-grey">
+					<div class="w3-bar-item">
+						<input id="txtTheme" class="w3-input w3-border" type="text" placeholder="warna-tema/index...">
+					</div>
+					<button class="w3-bar-item w3-button w3-ripple" onclick="setTheme()">Terapkan</button>
+				</div>
+			<button class="w3-bar-item w3-button w3-ripple" onclick="showAbout()">Tentang</button`>
+			<button class="w3-bar-item w3-button w3-ripple collapsed" onclick="dropdown(this)">
+				<span>Tautan lain</span>
+				<span class="w3-right"><svg width="10" height="10"><path d="M1 3L5 7L9 3Z"/></svg></span>
+				<span class="w3-right"><svg width="10" height="10"><path d="M1 7L5 3L9 7Z"/></svg></span>
+			</button>
+				<div class="w3-bar-block w3-light-grey">
+					<a class="w3-bar-item w3-button w3-ripple" href="../Kalmusgo.js/index.html">&#9679;&nbsp;Versi Bulanan</a>
+					<a class="w3-bar-item w3-button w3-ripple" href="../Calendar.js/index.html">&#9679;&nbsp;Dual Calendar</a>
+					<a class="w3-bar-item w3-button w3-ripple" href="../Datepicker.js/index.html">&#9679;&nbsp;Datepicker</a>
+					<a class="w3-bar-item w3-button w3-ripple" href="../Timepicker.js/index.html">&#9679;&nbsp;Timepicker</a>
+				</div>
+			<button class="w3-bar-item w3-button w3-ripple" onclick="closeMenu()">Tutup menu<span class="w3-right">&times;</span></button>
+		</div>
+	</div>
+	<h3>Demo Kalender Musim Tahunan Gorontalo</h3>
+</div>
+
+<div id="calendar" class="w3-container w3-margin-top"></div>
+
+<script type="text/javascript" src="../HijriDate.js/hijri-date.js"></script>
+<script type="text/javascript" src="kalmustago.js"></script>
+<script type="text/javascript">
+'use strict';
+let firstDay=1,
+	eventMode=6,
+	isJinxed=false,
+	kmtg=new Kalmustago();
+kmtg.attachTo(document.getElementById('calendar'));
+
+function openMenu(){
+	let mb=document.getElementById('menuButton'),
+		mc=document.getElementById('menuContent');
+	if(mc.className.indexOf('w3-show')==-1){
+		mb.className+=' w3-light-grey';
+		mc.className+=' w3-show'
+	}else closeMenu()
+}
+
+function closeMenu(){
+	let mb=document.getElementById('menuButton'),
+		mc=document.getElementById('menuContent');
+	mc.className=mc.className.replace(' w3-show','');
+	mb.className=mb.className.replace(' w3-light-grey','');
+}
+
+function dropdown(el){
+	if(el.className.indexOf('expanded')==-1){
+		el.className=el.className.replace('collapsed','expanded');
+	}else{
+		el.className=el.className.replace('expanded','collapsed');
+	}
+}
+
+function selectCalMode(el,isHijr){
+	let el2=el.parentNode.children[isHijr?0:1];
+	el.className=el.className.replace('w3-button w3-ripple','w3-transparent');
+	el.disabled=true;
+	el2.className=el2.className.replace('w3-transparent','w3-button w3-ripple');
+	el2.disabled=false;
+	kmtg.setHijriMode(isHijr)
+}
+
+function selectEvent(el,ev){
+	let ep=el.parentNode.children;
+	el.className=el.className.replace('w3-button w3-ripple','w3-transparent');
+	el.disabled=true;
+	switch(ev){
+		case 0:case 1:case 2:case 3:
+			ep[eventMode].className=ep[eventMode].className.replace('w3-transparent','w3-button w3-ripple');
+			ep[eventMode].disabled=false;
+			eventMode=ev;
+			kmtg.showEvent(ev);
+			break;
+		case 4:
+			ep[5].className=ep[5].className.replace('w3-transparent','w3-button w3-ripple');
+			ep[5].disabled=false;
+			if(eventMode==6){
+				ep[6].className=ep[6].className.replace('w3-transparent','w3-button w3-ripple');
+				ep[6].disabled=false;
+			}
+			isJinxed=true;
+			kmtg.showJinxed();
+			break;
+		case 5:
+			ep[4].className=ep[4].className.replace('w3-transparent','w3-button w3-ripple');
+			ep[4].disabled=false;
+			isJinxed=false;
+			kmtg.hideJinxed();
+			break;
+		case 6:
+			if(eventMode<6){
+				ep[eventMode].className=ep[eventMode].className.replace('w3-transparent','w3-button w3-ripple');
+				ep[eventMode].disabled=false;
+				eventMode=ev;
+				kmtg.hideEvent();
+			}
+			if(isJinxed){
+				ep[4].className=ep[4].className.replace('w3-transparent','w3-button w3-ripple');
+				ep[4].disabled=false;
+				ep[5].className=ep[5].className.replace('w3-button w3-ripple','w3-transparent');
+				ep[5].disabled=true;
+				isJinxed=false;
+				kmtg.hideJinxed()
+			}
+	}
+}
+
+function selectFirstDay(el,fd){
+	let el2=el.parentNode.children[firstDay];
+	el.className=el.className.replace('w3-button w3-ripple','w3-transparent');
+	el.disabled=true;
+	el2.className=el2.className.replace('w3-transparent','w3-button w3-ripple');
+	el2.disabled=false;
+	kmtg.setFirstDayOfWeek(fd);
+	firstDay=fd
+}
+
+function gotoToday(){
+	kmtg.today()
+}
+
+function setYear(){
+	let el=document.getElementById('valYear');
+	kmtg.setFullYear(el.value)
+}
+
+function setTheme(){
+	let el=document.getElementById('txtTheme');
+	let n=parseInt(el.value);
+	if(!isNaN(n))kmtg.setTheme(n);
+	else kmtg.setTheme(el.value)
+}
+
+function showAbout(){
+	closeMenu();
+	kmtg.about()
+}
+</script>
+</body>
+</html>
