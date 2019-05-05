@@ -1,2 +1,4 @@
-# Kalmustago.js
-Kalender Musim Tahunan Gorontalo
+# Kalender Musim Gorontalo
+
+## Demo
+Demo [disini](https://zulns.github.io/Kalmustago.js/).
