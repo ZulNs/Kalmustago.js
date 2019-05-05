@@ -480,7 +480,7 @@ function Kalmustago(isHijr,year,firstDay,theme){
 	},
 	onAbout=function(){
 		aboutTitleElm.innerHTML='KalMus&nbsp;Tahunan&nbsp;Gorontalo';
-		aboutDateElm.innerHTML='Gorontalo,&nbsp;2&nbsp;Mei&nbsp;2019';
+		aboutDateElm.innerHTML='Gorontalo,&nbsp;5&nbsp;Mei&nbsp;2019';
 		aboutElm.style.display='block'
 	},
 	getOppsDate=function(){
