@@ -46,7 +46,9 @@ function Kalmustago(isHijr,year,firstDay,theme){
 		else el['on'+ev]=cb
 	},
 	kmtgElm=createElm('div','zulns-kalmustago'),
-	todayElm=createElm('div','w3-medium w3-margin-left w3-show-inline-block'),
+	statusElm=createElm('div','w3-row w3-margin-left w3-medium'),
+	eventElm=createElm('div','w3-left w3-margin-right'),
+	todayElm=createElm('div','w3-right'),
 	yearlyElm=createElm('div'),
 	legendElm=createElm('div','w3-margin-left w3-margin-top w3-small'),
 	createStyle=function(){
@@ -499,6 +501,7 @@ function Kalmustago(isHijr,year,firstDay,theme){
 		window.setTimeout(beginNewDate,t);
 		updTodayStr();
 		if(isInit){
+			eventElm.className+=' w3-'+theme+' w3-hide';
 			todayElm.className+=' w3-'+theme;
 			isInit=false
 		}else{
@@ -541,8 +544,20 @@ function Kalmustago(isHijr,year,firstDay,theme){
 		}else newTheme()
 	},
 	updTheme=function(){
+		eventElm.className=eventElm.className.replace('w3-'+oldTheme,'w3-'+theme);
 		todayElm.className=todayElm.className.replace('w3-'+oldTheme,'w3-'+theme);
 		recreateYearlyCal()
+	},
+	updEventStatus=function(){
+		if(eventMode==6&&!isJinxed){
+			eventElm.innerHTML='';
+			if(eventElm.className.indexOf('w3-hide')==-1)eventElm.className+=' w3-hide'
+		}else{
+			eventElm.className=eventElm.className.replace(' w3-hide','')
+			if(eventMode<6)eventElm.innerHTML=Kalmustago.strings['events'][eventMode];
+			if(eventMode<6&&isJinxed)eventElm.innerHTML+='/';
+			if(isJinxed)eventElm.innerHTML+=Kalmustago.strings['events'][4]
+		}
 	};
 	kmtg.about=function(){
 		onAbout()
@@ -587,17 +602,22 @@ function Kalmustago(isHijr,year,firstDay,theme){
 		let cy=dispDate.getFullYear();
 		dispDate.setTime(getCurTime());
 		dispDate.setDate(1);
-		if(cy!=dispDate.getFullYear())recreateYearlyCal();
+		if(cy!=dispDate.getFullYear()){
+			gridAni='zoom';
+			recreateYearlyCal()
+		}
 	};
 	kmtg.showJinxed=function(){
 		if(!isJinxed){
 			isJinxed=true;
+			updEventStatus();
 			recreateYearlyCal()
 		}
 	};
 	kmtg.hideJinxed=function(){
 		if(isJinxed){
 			isJinxed=false;
+			updEventStatus();
 			recreateYearlyCal()
 		}
 	};
@@ -605,12 +625,14 @@ function Kalmustago(isHijr,year,firstDay,theme){
 		ev=parseInt(ev);
 		if(0<=ev&&ev<=3&&ev!=eventMode){
 			eventMode=ev;
+			updEventStatus();
 			recreateYearlyCal()
 		}
 	};
 	kmtg.hideEvent=function(){
 		if(0<=eventMode&&eventMode<=3){
 			eventMode=6;
+			updEventStatus();
 			recreateYearlyCal()
 		}
 	}
@@ -630,8 +652,10 @@ function Kalmustago(isHijr,year,firstDay,theme){
 	beginNewDate();
 	createStyle();
 	createAboutModal();
-	todayElm.style.cssText='padding:4px 8px';
-	kmtgElm.appendChild(todayElm);
+	eventElm.style.cssText=todayElm.style.cssText='padding:4px 8px';
+	statusElm.appendChild(eventElm);
+	statusElm.appendChild(todayElm);
+	kmtgElm.appendChild(statusElm);
 	kmtgElm.appendChild(yearlyElm);
 	kmtgElm.appendChild(legendElm);
 	let el=createElm('div');
@@ -698,5 +722,6 @@ Kalmustago.strings={
 	weekdayNames:["Minggu","Senin","Selasa","Rabu","Kamis","Jum'at","Sabtu"],
 	weekdayShortNames:["Min","Sen","Sel","Rab","Kam","Jum","Sab"],
 	monthNames:["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"],
-	hMonthNames:["Muharam","Safar","Rabi'ul-Awal","Rabi'ul-Akhir","Jumadil-Awal","Jumadil-Akhir","Rajab","Sya'ban","Ramadhan","Syawwal","Zulqa'idah","Zulhijjah"]
+	hMonthNames:["Muharam","Safar","Rabi'ul-Awal","Rabi'ul-Akhir","Jumadil-Awal","Jumadil-Akhir","Rajab","Sya'ban","Ramadhan","Syawwal","Zulqa'idah","Zulhijjah"],
+	events:["Musim Tanam","Musim Melaut","Musim Hajatan","Payango Bele","LOWANGA"]
 };
