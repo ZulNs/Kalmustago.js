@@ -65,7 +65,7 @@ button.collapsed + div,button.collapsed>:nth-child(3),button.expanded>:nth-child
 					<button class="w3-bar-item w3-button w3-ripple" onclick="selectEvent(this,2)">&#9679;&nbsp;Musim&nbsp;Hajatan</button>
 					<button class="w3-bar-item w3-button w3-ripple" onclick="selectEvent(this,3)">&#9679;&nbsp;Payango&nbsp;Bele</button>
 					<button class="w3-bar-item w3-button w3-ripple" onclick="selectEvent(this,4)">&#9679;&nbsp;Tampilkan&nbsp;Lowanga</button>
-					<button class="w3-bar-item w3-transparent" onclick="selectEvent(this,5)" disabled>&#9679;&nbsp;Hilangkan&nbsp;Lowangan</button>
+					<button class="w3-bar-item w3-transparent" onclick="selectEvent(this,5)" disabled>&#9679;&nbsp;Hilangkan&nbsp;Lowanga</button>
 					<button class="w3-bar-item w3-transparent" onclick="selectEvent(this,6)" disabled>&#9679;&nbsp;Hilangkan&nbsp;Semua</button>
 				</div>
 			<button class="w3-bar-item w3-button w3-ripple" onclick="gotoToday()">Tampilkan hari ini</button`>
@@ -179,6 +179,10 @@ function selectEvent(el,ev){
 		case 5:
 			ep[4].className=ep[4].className.replace('w3-transparent','w3-button w3-ripple');
 			ep[4].disabled=false;
+			if(eventMode==6){
+				ep[6].className=ep[6].className.replace('w3-button w3-ripple','w3-transparent');
+				ep[6].disabled=true;
+			}
 			isJinxed=false;
 			kmtg.hideJinxed();
 			break;
